@@ -7,8 +7,8 @@ WORKDIR /app
 # Expose port 8082 to the outside world
 EXPOSE 8082
 
-# Add the JAR file from the target directory into the container
-ADD target/eventsProject-1.0.0.jar eventsProject-1.0.0.jar
+# Copy the JAR file from the Maven target directory into the container
+COPY target/eventsProject-1.0.0.jar eventsProject-1.0.0.jar
 
 # Specify the command to run your Spring Boot application
 ENTRYPOINT ["java", "-jar", "eventsProject-1.0.0.jar"]
