@@ -8,7 +8,7 @@ WORKDIR /app
 EXPOSE 8082
 
 # Add the JAR file from the target directory into the container
-ADD target/eventproject-1.0.jar eventproject-1.0.jar
+ADD target/eventsProject-1.0.0.jar eventsProject-1.0.0.jar
 
 # Specify the command to run your Spring Boot application
-ENTRYPOINT ["java", "-jar", "eventproject-1.0.jar"]
+ENTRYPOINT ["java", "-jar", "eventsProject-1.0.0.jar"]
