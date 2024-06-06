@@ -10,7 +10,7 @@ services:
       - "3306:3306"
 
   app-achat:
-    image: ahmedjilani1/eventproject:1.0.0
+    image: ahmedjilani1/eventproject1.0.0:latest
     restart: always
     ports:
       - "8082:8082"
