@@ -1,15 +1,17 @@
-# Use the official OpenJDK 17 JDK image with Alpine Linux as the base image
-FROM java-17-openjdk-amd64
+# Use the official OpenJDK 17 image from Docker Hub
+FROM openjdk:17
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Expose port 8082 to the outside world
-EXPOSE 80
+# Copy the Maven project JAR file into the container
+COPY target/eventsProject-1.0.0.jar /app/eventsProject-1.0.0.jar
 
-# Download the JAR file from Nexus repository into the container
-# Replace the Nexus URL and artifact coordinates with your actual values
-RUN wget http://http://192.168.50.4:8081/repository/maven-releases/tn/esprit/eventsProject/1.0/eventsProject-1.0.jar
+# Expose the port your application will run on (e.g., 8082)
+EXPOSE 8082
 
-# Specify the command to run your Spring Boot application
-ENTRYPOINT ["java", "-jar", "eventsProject-1.0.jar"]
+# Set the entry point for the Docker container (running your Java application)
+ENTRYPOINT ["java", "-jar", "/app/eventsProject-1.0.0.jar"]
+
+# Set the default command to run when the container starts
+CMD ["java", "-jar", "/app/eventsProject-1.0.0.jar"]
