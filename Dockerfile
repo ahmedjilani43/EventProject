@@ -4,14 +4,14 @@ FROM openjdk:17
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the Maven project JAR file into the container
-COPY target/eventsProject-1.0.0.jar /app/eventsProject-1.0.0.jar
+# Expose port 8082 to the outside world
+EXPOSE 80
 
-# Expose the port your application will run on (e.g., 8082)
-EXPOSE 8082
+# Download the JAR file from Nexus repository into the container
+RUN wget http://192.168.50.4:8081/repository/maven-releases/tn/esprit/eventsProject/1.0/eventsProject-1.0.jar -O /app/eventsProject-1.0.jar
 
 # Set the entry point for the Docker container (running your Java application)
-ENTRYPOINT ["java", "-jar", "/app/eventsProject-1.0.0.jar"]
+ENTRYPOINT ["java", "-jar", "/app/eventsProject-1.0.jar"]
 
 # Set the default command to run when the container starts
-CMD ["java", "-jar", "/app/eventsProject-1.0.0.jar"]
+CMD ["java", "-jar", "/app/eventsProject-1.0.jar"]
